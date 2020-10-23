@@ -3,4 +3,5 @@ import { TextInput } from 'react-native-paper';
 
 export const CustomInput = styled(TextInput)`
   width: 100%;
+  margin-bottom: 10px;
 `;
