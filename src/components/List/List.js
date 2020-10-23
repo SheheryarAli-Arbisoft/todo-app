@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { ScrollView } from 'react-native';
 import { Divider } from 'react-native-paper';
-import { CustomSection, CustomItem, CustomIcon } from './styled';
+import { CustomSection, CustomItem } from './styled';
 import { propTypes, defaultProps } from './props';
 
-export const List = ({ titleStyle }) => {
-  return (
-    <CustomSection>
+export const List = ({ todos, onRemove: removeTodo, titleStyle }) => {
+  const items = todos.map((todo, index) => (
+    <Fragment>
       <CustomItem
-        title='List item'
+        title={todo.description}
         titleStyle={titleStyle}
-        right={props => <CustomIcon {...props} icon='close' />}
+        onPress={() => removeTodo(index)}
       />
       <Divider />
+    </Fragment>
+  ));
+
+  return (
+    <CustomSection>
+      <ScrollView>{items}</ScrollView>
     </CustomSection>
   );
 };
